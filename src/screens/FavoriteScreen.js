@@ -79,10 +79,6 @@ export default function FavoriteScreen() {
         data={favoriteRecipesList}
         keyExtractor={(item) => item.idFood.toString()}
         renderItem={({ item }) => (
-          // <View style={styles.listContentContainer}>
-          //   <Image source={{ uri: item.recipeImage }} style={styles.recipeImage} />
-          //   <Text style={styles.recipeTitle}>{item.recipeName}</Text>
-          // </View>
 
           <TouchableOpacity
             style={styles.cardContainer}
@@ -102,8 +98,6 @@ export default function FavoriteScreen() {
         )}
         contentContainerStyle={styles.listContentContainer}
       />
-
-
 
     </>
   );
