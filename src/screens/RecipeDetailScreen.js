@@ -116,21 +116,27 @@ export default function RecipeDetailScreen(props) {
                 </View>
 
                 {/* Ingredients */}
-                <Text style={styles.sectionTitle}>Ingredients</Text>
-                <View style={styles.ingredientsList} testID="ingredientsList">
-                    {(recipe.ingredients).map((i) => (
-                        <View key={i} style={styles.ingredientItem}>
-                            <View style={styles.ingredientBullet} />
-                            <Text style={styles.ingredientText}>
-                                {i.ingredientName} {i.measure}
-                            </Text>
-                        </View>
-                    ))}
+                <View style={styles.sectionContainer} testID="sectionContainer">
+
+                    <Text style={styles.sectionTitle}>Ingredients</Text>
+                    <View style={styles.ingredientsList} testID="ingredientsList">
+                        {(recipe.ingredients).map((i) => (
+                            <View key={i} style={styles.ingredientItem}>
+                                <View style={styles.ingredientBullet} />
+                                <Text style={styles.ingredientText}>
+                                    {i.ingredientName} {i.measure}
+                                </Text>
+                            </View>
+                        ))}
+                    </View>
                 </View>
 
                 {/* Instructions */}
                 <View style={styles.sectionContainer} testID="sectionContainer">
-
+                    <Text style={styles.sectionTitle}>Instructions</Text>
+                    <Text style={styles.instructionsText} testID="instructionsText">
+                        {recipe.recipeInstructions}
+                    </Text>
                 </View>
                 {/* Description */}
 
@@ -198,7 +204,7 @@ const styles = StyleSheet.create({
         color: "#9CA3AF", // text-neutral-500
     },
     sectionContainer: {
-        marginBottom: hp(2),
+        marginTop: hp(3),
     },
     sectionTitle: {
         fontSize: hp(2.5),
