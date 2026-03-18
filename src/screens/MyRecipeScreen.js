@@ -7,9 +7,9 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -20,17 +20,20 @@ export default function MyRecipeScreen() {
   const [recipes, setrecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchrecipes = async () => {
-      const storedRecipes = await AsyncStorage.getItem("customRecipes");
-      if (storedRecipes) {
-        setrecipes(JSON.parse(storedRecipes));
-      }
-      setLoading(false); // Loading is complete
-    };
+  useFocusEffect(
+    useCallback(() => {
+      const fetchrecipes = async () => {
+        const storedRecipes = await AsyncStorage.getItem("customRecipes");
+        if (storedRecipes) {
+          setrecipes(JSON.parse(storedRecipes));
+        }
+        setLoading(false); // Loading is complete
+      };
 
-    fetchrecipes();
-  }, []);
+      fetchrecipes();
+
+    }, [])
+  );
 
   const handleAddrecipe = () => {
     navigation.navigate("RecipesFormScreen");
